@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./App.css";
 
 const API_URL =
-  "https://online-survey-application-1-qbo6.onrender.com/api/surveys";
+  "https://online-survey-application-2o3v.onrender.com/api/surveys";
 
 const questionBank = [
   {
