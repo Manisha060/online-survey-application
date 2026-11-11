@@ -2,6 +2,9 @@
 import { useState } from "react";
 import "./App.css";
 
+const API_URL =
+  "https://online-survey-application-1-qbo6.onrender.com/api/surveys";
+
 const questionBank = [
   {
     question: "How satisfied are you with our website?",
@@ -68,21 +71,18 @@ function App() {
     setLoading(true);
 
     try {
-      const response = await fetch(
-  "https://https://online-survey-application-2o3v.onrender.com/api/surveys",
-  {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            answers: questions.map((item) => ({
-              question: item.question,
-              answer: answers[item.question]
-            }))
-          })
-        }
-      );
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          answers: questions.map((item) => ({
+            question: item.question,
+            answer: answers[item.question]
+          }))
+        })
+      });
 
       const data = await response.json();
 
@@ -90,9 +90,12 @@ function App() {
         throw new Error(data.message || "Submission failed.");
       }
 
-      setMessage("Survey submitted successfully! Answers saved to MongoDB.");
+      setMessage(
+        "Survey submitted successfully! Answers saved to MongoDB."
+      );
       setAnswers({});
       setQuestions(getRandomQuestions());
+
     } catch (error) {
       setMessage(
         "Error: " + error.message +
@@ -106,6 +109,7 @@ function App() {
   return (
     <main className="container">
       <h1>Online Survey Application</h1>
+
       <p className="subtitle">
         Please answer these 5 questions and submit your response.
       </p>
@@ -139,7 +143,9 @@ function App() {
         </button>
 
         {message && (
-          <p className="message" role="status">{message}</p>
+          <p className="message" role="status">
+            {message}
+          </p>
         )}
       </form>
     </main>
