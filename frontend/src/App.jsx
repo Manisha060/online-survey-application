@@ -69,7 +69,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/surveys",
+        "https://YOUR-BACKEND-URL.onrender.com/api/surveys"
         {
           method: "POST",
           headers: {
