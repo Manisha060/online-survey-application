@@ -84,8 +84,19 @@ function App() {
         })
       });
 
-      const data = await response.json();
+      const responseText = await response.text();
 
+let data = {};
+
+try {
+  data = responseText ? JSON.parse(responseText) : {};
+} catch {
+  throw new Error("Backend returned an invalid response.");
+}
+
+if (!response.ok) {
+  throw new Error(data.message || "Submission failed.");
+}
       if (!response.ok) {
         throw new Error(data.message || "Submission failed.");
       }
