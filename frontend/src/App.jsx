@@ -69,8 +69,8 @@ function App() {
 
     try {
       const response = await fetch(
-        "https://YOUR-BACKEND-URL.onrender.com/api/surveys"
-        {
+  "https://YOUR-ACTUAL-BACKEND-URL.onrender.com/api/surveys",
+  {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
